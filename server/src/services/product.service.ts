@@ -22,6 +22,13 @@ export const addUpdateProduct = async (
 
     return updatedProduct;
   } else {
+    const existing = await Product.findOne({ name: data.name });
+    if (existing) {
+      const err = new Error('Product name already exists');
+      // @ts-ignore
+      err.status = 409;
+      throw err;
+    }
     const newProduct = new Product(data);
     return await newProduct.save();
   }

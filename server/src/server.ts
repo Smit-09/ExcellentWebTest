@@ -4,6 +4,7 @@ import express, { Application } from 'express';
 import connectDB from './config/db';
 import authRoutes from './routes/auth.routes';
 import productRoutes from './routes/product.routes';
+import cartRoutes from './routes/cart.routes';
 
 dotenv.config();
 connectDB();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.get("/", (_req, res) => res.send("API is running 🚀"));
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
 
 
 app.listen(PORT, () => {

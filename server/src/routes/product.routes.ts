@@ -1,14 +1,12 @@
 import express from "express";
-// import { protect } from "../middlewares/auth.middleware";
 import { addUpdateProduct, deleteProduct, getProducts } from "../controllers/product.controller";
+import { protect } from "../middlewares/auth.middleware";
 
 const router = express.Router();
 
-// router.get("/", protect, getProducts); (I can use middleware but didnt implemented on FE)
-
-router.get("/", getProducts);
-router.post("/create", addUpdateProduct);
-router.put("/update", addUpdateProduct);
-router.delete("/:id", deleteProduct);
+router.get("/", protect, getProducts);
+router.post("/create", protect, addUpdateProduct);
+router.put("/update", protect, addUpdateProduct);
+router.delete("/:id", protect, deleteProduct);
 
 export default router;

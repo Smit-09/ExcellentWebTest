@@ -29,6 +29,12 @@ const LoginForm = () => {
       >
         <h2 className="text-2xl font-semibold text-center mb-6 text-gray-900">Login</h2>
 
+        <div className="text-black mb-5">
+          <p>Note:</p>
+          <p className="text-sm">Email: test@gmail.com</p>
+          <p className="text-sm">pass: admin@123</p>
+        </div>
+
         <input
           type="email"
           placeholder="Email"

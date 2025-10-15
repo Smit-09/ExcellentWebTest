@@ -18,7 +18,9 @@ export const addUpdateProduct = async (req: Request, res: Response) => {
     
     res.status(id ? 200 : 201).json(product);
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    const status = error?.status || (error?.code === 11000 ? 409 : 400);
+    const message = error?.code === 11000 ? 'Duplicate product name' : error.message;
+    res.status(status).json({ message });
   }
 };
 

@@ -9,7 +9,7 @@ interface ProductTableProps {
 export default function ProductTable({ products, onEdit, onDelete }: ProductTableProps) {
   return (
     <table className="min-w-full bg-black shadow rounded overflow-hidden">
-      <thead className="bg-gray-900">
+      <thead className="bg-gray-800">
         <tr>
           <th className="text-left p-3">Name</th>
           <th className="text-left p-3">Price</th>
@@ -20,20 +20,15 @@ export default function ProductTable({ products, onEdit, onDelete }: ProductTabl
       </thead>
       <tbody>
         {(products ?? []).map((product) => (
-          <tr key={product.id} className="border-t">
+          <tr key={product._id} className="border-t">
             <td className="p-3">{product.name}</td>
             <td className="p-3">{product.price}</td>
             <td className="p-3">{product.category}</td>
             <td className="p-3">{product.stock}</td>
             <td className="p-3">
+              <a href={`/products/update/${product._id}`} className="text-blue-600 hover:underline">Edit</a>
               <button
-                onClick={() => onEdit(product)}
-                className="text-blue-600 hover:underline"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => product.id !== undefined && onDelete(product.id)}
+                onClick={() => product._id !== undefined && onDelete(product._id as unknown as number)}
                 className="text-red-600 hover:underline ml-4"
               >
                 Delete

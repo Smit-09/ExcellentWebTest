@@ -1,13 +1,15 @@
 import Header from './Header'
 import AllRoutes from './AllRoutes'
 import { CartProvider } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext';
 
 const LayoutProvider = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <CartProvider>
       <div className=''>
-          <Header />
-          <AllRoutes />
+        {isAuthenticated && <Header />}
+        <AllRoutes />
       </div>
     </CartProvider>
   )
